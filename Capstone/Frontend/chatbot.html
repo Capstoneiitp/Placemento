@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Placemento - AI Chat Bot</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .chat-container {
+            display: flex;
+            flex-direction: column;
+            height: calc(100vh - 120px);
+            background: #111827;
+            border: 1px solid #1F2937;
+            border-radius: 16px;
+            margin: 0 40px 40px 40px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        .chat-messages {
+            flex: 1;
+            padding: 30px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .message {
+            display: flex;
+            gap: 15px;
+            max-width: 80%;
+        }
+        .message.bot { align-self: flex-start; }
+        .message.user { align-self: flex-end; flex-direction: row-reverse; }
+        
+        .message-icon {
+            width: 40px; height: 40px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; font-size: 20px;
+            flex-shrink: 0;
+        }
+        .bot .message-icon { background: rgba(59, 130, 246, 0.15); color: #3B82F6; }
+        .user .message-icon { background: #374151; color: #F8FAFC; }
+
+        .message-bubble {
+            padding: 15px 20px;
+            border-radius: 12px;
+            font-size: 15px;
+            line-height: 1.5;
+            color: #F8FAFC;
+        }
+        .bot .message-bubble {
+            background: #1E293B;
+            border: 1px solid #374151;
+            border-top-left-radius: 4px;
+        }
+        .user .message-bubble {
+            background: #2563EB;
+            border-top-right-radius: 4px;
+        }
+
+        .chat-input-area {
+            padding: 20px;
+            border-top: 1px solid #1F2937;
+            display: flex;
+            gap: 15px;
+        }
+        .chat-input {
+            flex: 1;
+            background: #1E293B;
+            border: 1px solid #374151;
+            border-radius: 20px;
+            padding: 15px 25px;
+            color: #F8FAFC;
+            font-size: 15px;
+            outline: none;
+            transition: 0.3s;
+        }
+        .chat-input:focus {
+            border-color: #3B82F6;
+            box-shadow: 0 0 10px rgba(59, 130, 246, 0.2);
+        }
+        .send-btn {
+            background: #2563EB;
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 20px;
+            transition: 0.3s;
+        }
+        .send-btn:hover { background: #1D4ED8; }
+    </style>
+</head>
+<body class="dashboard-body">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-logo">Placemento</div>
+        <ul class="sidebar-menu">
+            <li onclick="window.location.href='dashboard.html'"><i>📝</i> Skill Assessment</li>
+            <li onclick="window.location.href='analysis.html'"><i>🔍</i> Skill Analysis</li>
+            <li class="active"><i>🤖</i> AI Chat Bot</li>
+            <li onclick="window.location.href='settings.html'"><i>⚙️</i> Settings</li>
+            <li onclick="logoutUser()" style="margin-top: auto; color: #bae6fd;"><i>🚪</i> Logout</li>
+        </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Header -->
+        <header class="dash-header" style="height: auto; padding: 20px 40px; border-bottom: none; background: transparent; backdrop-filter: none; box-shadow: none;">
+            <div>
+                <h2 style="font-size: 28px; margin-bottom: 5px;">AI Placement Assistant 🤖</h2>
+                <p style="color: #94A3B8; font-size: 15px;">Ask me anything about your skills, gap analysis, or resume!</p>
+            </div>
+            <div class="user-profile">
+                <div class="user-info" style="text-align: right;">
+                    <h4 id="profile-name">Abhishek Singh</h4>
+                    <p id="profile-subtitle">Computer Science, Year 3</p>
+                </div>
+                <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Profile Picture" style="width: 40px; height: 40px;">
+            </div>
+        </header>
+
+        <div class="chat-container">
+            <div class="chat-messages">
+                
+            </div>
+
+            <div class="chat-input-area">
+                <input type="text" class="chat-input" placeholder="Type your message here...">
+                <button class="send-btn">➤</button>
+            </div>
+        </div>
+
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="chatbot.js"></script>
+    <script src="auth.js"></script>
+    <script>
+        function logoutUser() {
+            const keys = ['placemento_user_name','placemento_user_email','placemento_user_phone',
+                          'placemento_user_branch','placemento_user_grad_year','placemento_user_pic',
+                          'placement_prediction_results'];
+            keys.forEach(k => localStorage.removeItem(k));
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>

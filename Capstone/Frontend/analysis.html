@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Placemento - Analysis</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="dashboard-body">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-logo">Placemento</div>
+        <ul class="sidebar-menu">
+            <li onclick="window.location.href='dashboard.html'"><i>📝</i> Skill Assessment</li>
+            <li class="active"><i>🔍</i> Skill Analysis</li>
+            <li onclick="window.location.href='chatbot.html'"><i>🤖</i> AI Chat Bot</li>
+            <li onclick="window.location.href='settings.html'"><i>⚙️</i> Settings</li>
+            <li onclick="logoutUser()" style="margin-top: auto; color: #bae6fd;"><i>🚪</i> Logout</li>
+        </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Header -->
+        <header class="dash-header" style="height: auto; padding: 10px 40px; border-bottom: none; background: transparent; backdrop-filter: none; box-shadow: none;">
+            <div>
+                <h2 style="font-size: 24px; margin-bottom: 2px;">Welcome back! 👋</h2>
+                <p style="color: #475569; font-size: 15px;">Here's your placement readiness overview</p>
+            </div>
+            <div style="display: flex; align-items: center; gap: 20px;">
+
+                <div class="user-profile">
+                    <div class="user-info" style="text-align: right;">
+                        <h4 id="profile-name">User</h4>
+                        <p id="profile-subtitle">Computer Science, Year 3</p>
+                    </div>
+                    <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Profile Picture" style="width: 40px; height: 40px;">
+                </div>
+            </div>
+        </header>
+
+        <div class="analysis-grid" style="padding: 0 40px 10px 40px;">
+            
+            <!-- TOP ROW -->
+            <div class="top-stats-row">
+                <!-- Stat 1 -->
+                <div class="dash-card stat-box">
+                    <div class="stat-box-header">Placement Probability <i class="info-icon" data-info="Likelihood of getting placed based on your current skill profile and market demand.">ℹ️</i></div>
+                    <div class="stat-box-content">
+                        <div class="stat-text">
+                            <h2 id="prob-text">78%</h2>
+                            <p id="prob-subtext" style="color: #16a34a;">High Chance of Placement</p>
+                        </div>
+                        <div class="stat-circle blue-circle">
+                            <span id="prob-circle-text">78%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stat 2 -->
+                <div class="dash-card stat-box">
+                    <div class="stat-box-header">Overall Skill Score <i class="info-icon" data-info="A weighted average of all your assessed skills compared to top-tier company requirements.">ℹ️</i></div>
+                    <div class="stat-box-content">
+                        <div class="stat-text">
+                            <h2 id="overall-score-text">65<span style="font-size: 16px; color: #64748b;">/100</span></h2>
+                            <p id="overall-score-subtext" style="color: #ca8a04;">Good - Keep Improving!</p>
+                        </div>
+                        <!-- Semi circle placeholder for design -->
+                        <div class="stat-semi-circle"></div>
+                    </div>
+                </div>
+
+
+
+                <!-- Stat 4 -->
+                <div class="dash-card stat-box">
+                    <div class="stat-box-header">Placement Readiness <i class="info-icon" data-info="Your current progress status in preparing for recruitment cycles.">ℹ️</i></div>
+                    <div class="stat-box-content">
+                        <div class="stat-text">
+                            <h2 id="readiness-text" style="color: #0284c7;">Improving</h2>
+                            <p id="readiness-subtext" style="color: #475569;">You're on the right track!</p>
+                        </div>
+                        <div class="stat-icon-large blue-bg">↗️</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MIDDLE ROW -->
+            <div class="middle-insights-row">
+                <!-- Bar Chart -->
+                <div class="dash-card">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                        <h3 style="margin: 0; font-size: 16px;">Skill Overview <span style="font-size: 12px; font-weight: normal; color: #64748b;">(Bar Chart)</span></h3>
+                        <select style="background: rgba(255,255,255,0.5); border: 1px solid rgba(255,255,255,0.8); padding: 4px 8px; border-radius: 6px; outline: none;"><option>All Skills</option></select>
+                    </div>
+                    <div class="chart-container" style="height: 220px;">
+                        <canvas id="analysisBarChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Skill Analysis Bars -->
+                <div class="dash-card">
+                    <h3 style="margin-bottom: 15px; font-size: 16px;">Skill Analysis <i class="info-icon" data-info="Detailed breakdown of your proficiency in core areas vs. industry benchmarks.">ℹ️</i></h3>
+                    <div class="skill-bar-list" id="skill-analysis-list">
+                        <div class="skill-bar-header">
+                            <span style="flex: 2;">Skill</span>
+                            <span style="flex: 2; text-align: center;">Your Level</span>
+                            <span style="flex: 1; text-align: right;">Required</span>
+                            <span style="flex: 1; text-align: right;">Status</span>
+                        </div>
+                        
+                        <div class="skill-bar-item">
+                            <span style="flex: 2; font-weight: 600; font-size: 14px;">Coding and programming</span>
+                            <div style="flex: 2; display: flex; align-items: center; gap: 10px;">
+                                <div class="progress-bg"><div class="progress-fill" style="width: 70%;"></div></div>
+                                <span style="font-size: 12px; font-weight: bold;">70%</span>
+                            </div>
+                            <span style="flex: 1; text-align: right; font-size: 13px;">High</span>
+                            <span style="flex: 1; text-align: right;"><span class="badge badge-medium">Medium</span></span>
+                        </div>
+
+                        <div class="skill-bar-item">
+                            <span style="flex: 2; font-weight: 600; font-size: 14px;">Aptitude</span>
+                            <div style="flex: 2; display: flex; align-items: center; gap: 10px;">
+                                <div class="progress-bg"><div class="progress-fill" style="width: 50%;"></div></div>
+                                <span style="font-size: 12px; font-weight: bold;">50%</span>
+                            </div>
+                            <span style="flex: 1; text-align: right; font-size: 13px;">Medium</span>
+                            <span style="flex: 1; text-align: right;"><span class="badge badge-low">Low</span></span>
+                        </div>
+
+                        <div class="skill-bar-item">
+                            <span style="flex: 2; font-weight: 600; font-size: 14px;">Communication</span>
+                            <div style="flex: 2; display: flex; align-items: center; gap: 10px;">
+                                <div class="progress-bg"><div class="progress-fill" style="width: 65%;"></div></div>
+                                <span style="font-size: 12px; font-weight: bold;">65%</span>
+                            </div>
+                            <span style="flex: 1; text-align: right; font-size: 13px;">Medium</span>
+                            <span style="flex: 1; text-align: right;"><span class="badge badge-medium">Medium</span></span>
+                        </div>
+
+                        <div class="skill-bar-item">
+                            <span style="flex: 2; font-weight: 600; font-size: 14px;">Core Subjects</span>
+                            <div style="flex: 2; display: flex; align-items: center; gap: 10px;">
+                                <div class="progress-bg"><div class="progress-fill" style="width: 75%;"></div></div>
+                                <span style="font-size: 12px; font-weight: bold;">75%</span>
+                            </div>
+                            <span style="flex: 1; text-align: right; font-size: 13px;">High</span>
+                            <span style="flex: 1; text-align: right;"><span class="badge badge-good">Good</span></span>
+                        </div>
+
+                        <div class="skill-bar-item">
+                            <span style="flex: 2; font-weight: 600; font-size: 14px;">Projects</span>
+                            <div style="flex: 2; display: flex; align-items: center; gap: 10px;">
+                                <div class="progress-bg"><div class="progress-fill" style="width: 60%;"></div></div>
+                                <span style="font-size: 12px; font-weight: bold;">60%</span>
+                            </div>
+                            <span style="flex: 1; text-align: right; font-size: 13px;">Medium</span>
+                            <span style="flex: 1; text-align: right;"><span class="badge badge-medium">Medium</span></span>
+                        </div>
+
+                        <div class="skill-bar-item">
+                            <span style="flex: 2; font-weight: 600; font-size: 14px;">Technical Stack</span>
+                            <div style="flex: 2; display: flex; align-items: center; gap: 10px;">
+                                <div class="progress-bg"><div class="progress-fill" style="width: 55%;"></div></div>
+                                <span style="font-size: 12px; font-weight: bold;">55%</span>
+                            </div>
+                            <span style="flex: 1; text-align: right; font-size: 13px;">Medium</span>
+                            <span style="flex: 1; text-align: right;"><span class="badge badge-low">Low</span></span>
+                        </div>
+                    </div>
+                    <div style="text-align: center; margin-top: 15px;">
+                        <a href="chatbot.html" style="color: #3B82F6; text-decoration: none; font-size: 13px; font-weight: 600;">Ask AI for Detailed Analysis &rarr;</a>
+                    </div>
+                </div>
+
+                <!-- Skill Gap Insights -->
+                <div class="dash-card">
+                    <h3 style="margin-bottom: 15px; font-size: 16px;">Skill Gap Insights <i class="info-icon" data-info="Identifies exactly where your skills fall short of industry requirements.">ℹ️</i></h3>
+                    <div id="skill-gap-container">
+                    
+                    <div class="insight-alert">
+                        <div class="insight-icon red-icon">&lt;/&gt;</div>
+                        <div class="insight-text">
+                            <h4>Data Structures & Algorithms</h4>
+                            <p>Your DSA skills are below the required level for most companies.</p>
+                            <div style="text-align: right; margin-top: 5px;"><span class="badge badge-low">Major Gap</span></div>
+                        </div>
+                    </div>
+
+                    <div class="insight-alert">
+                        <div class="insight-icon red-icon">📊</div>
+                        <div class="insight-text">
+                            <h4>Aptitude</h4>
+                            <p>Aptitude score needs improvement to increase placement chances.</p>
+                            <div style="text-align: right; margin-top: 5px;"><span class="badge badge-low">Major Gap</span></div>
+                        </div>
+                    </div>
+
+                    <div style="text-align: center; margin-top: 15px;">
+                        <a href="chatbot.html" style="color: #3B82F6; text-decoration: none; font-size: 13px; font-weight: 600;">Ask AI about Skill Gaps &rarr;</a>
+                    </div>
+                </div>
+            </div>
+            </div>
+
+            <!-- BOTTOM ROW -->
+            <div class="bottom-analytics-row">
+
+                <!-- Top Recommendations -->
+                <div class="dash-card">
+                    <h3 style="margin-bottom: 15px; font-size: 16px;">Top Recommendations For You <i class="info-icon" data-info="Personalized action items to bridge your skill gaps and boost your career.">ℹ️</i></h3>
+                    
+                    <div class="rec-item" onclick="window.open('https://leetcode.com/studyplan/top-interview-150/', '_blank')">
+                        <div class="rec-icon purple-bg">&lt;/&gt;</div>
+                        <div class="rec-text">
+                            <h5>Data Structures & Algorithms</h5>
+                            <p>Improve problem solving skills</p>
+                        </div>
+                        <div class="rec-arrow">&rsaquo;</div>
+                    </div>
+
+                    <div class="rec-item" onclick="window.open('https://www.indiabix.com/', '_blank')">
+                        <div class="rec-icon orange-bg">📝</div>
+                        <div class="rec-text">
+                            <h5>Aptitude Practice</h5>
+                            <p>Quantitative & Logical reasoning</p>
+                        </div>
+                        <div class="rec-arrow">&rsaquo;</div>
+                    </div>
+
+                    <div class="rec-item" onclick="window.open('https://www.geeksforgeeks.org/system-design-tutorial/', '_blank')">
+                        <div class="rec-icon green-bg">🧩</div>
+                        <div class="rec-text">
+                            <h5>System Design Basics</h5>
+                            <p>Learn low level & high level design</p>
+                        </div>
+                        <div class="rec-arrow">&rsaquo;</div>
+                    </div>
+
+                    <div style="text-align: center; margin-top: 15px;">
+                        <a href="chatbot.html" style="color: #3B82F6; text-decoration: none; font-size: 13px; font-weight: 600;">Ask AI for Full Recommendations &rarr;</a>
+                    </div>
+                </div>
+
+                <!-- AI Suggestions -->
+                <div class="dash-card">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                        <h3 style="margin: 0; font-size: 16px;">AI Suggestions</h3>
+                        <span style="color: #3B82F6; font-size: 20px;">✨</span>
+                    </div>
+                    
+                    <div class="ai-suggestion" onclick="window.location.href='chatbot.html'">
+                        <div class="ai-icon blue-bg">📈</div>
+                        <div class="ai-text">
+                            <p>Improve DSA skills to increase your placement probability by <strong>15%</strong></p>
+                        </div>
+                        <div class="rec-arrow">&rsaquo;</div>
+                    </div>
+
+                    <div class="ai-suggestion" onclick="window.location.href='chatbot.html'">
+                        <div class="ai-icon purple-bg">🎯</div>
+                        <div class="ai-text">
+                            <p>Solve at least 5 problems daily on LeetCode or GFG</p>
+                        </div>
+                        <div class="rec-arrow">&rsaquo;</div>
+                    </div>
+
+                    <div class="ai-suggestion" onclick="window.location.href='chatbot.html'">
+                        <div class="ai-icon green-bg">💬</div>
+                        <div class="ai-text">
+                            <p>Practice aptitude tests 3 times a week to boost your score</p>
+                        </div>
+                        <div class="rec-arrow">&rsaquo;</div>
+                    </div>
+
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 20px; cursor: pointer; padding: 12px 15px; background: rgba(59, 130, 246, 0.15); border-radius: 10px; transition: 0.3s;" onclick="window.location.href='chatbot.html'" onmouseover="this.style.background='rgba(59, 130, 246, 0.25)'" onmouseout="this.style.background='rgba(59, 130, 246, 0.15)'">
+                        <span style="color: #3B82F6; font-size: 14px; font-weight: 600;">Ask AI Assistant &rarr;</span>
+                        <div style="font-size: 24px;">🤖</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="analysis.js"></script>
+    <script src="auth.js"></script>
+    <script>
+        function logoutUser() {
+            const keys = ['placemento_user_name','placemento_user_email','placemento_user_phone',
+                          'placemento_user_branch','placemento_user_grad_year','placemento_user_pic',
+                          'placement_prediction_results'];
+            keys.forEach(k => localStorage.removeItem(k));
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>

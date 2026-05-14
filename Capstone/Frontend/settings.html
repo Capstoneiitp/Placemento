@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Placemento - Settings</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="dashboard-body">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-logo">Placemento</div>
+        <ul class="sidebar-menu">
+            <li onclick="window.location.href='dashboard.html'"><i>📝</i> Skill Assessment</li>
+            <li onclick="window.location.href='analysis.html'"><i>🔍</i> Skill Analysis</li>
+            <li onclick="window.location.href='chatbot.html'"><i>🤖</i> AI Chat Bot</li>
+            <li class="active"><i>⚙️</i> Settings</li>
+            <li onclick="logoutUser()" style="margin-top: auto; color: #bae6fd;"><i>🚪</i> Logout</li>
+        </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Header -->
+        <header class="dash-header" style="height: auto; padding: 20px 40px; border-bottom: none; background: transparent; backdrop-filter: none; box-shadow: none;">
+            <div>
+                <h2 style="font-size: 28px; margin-bottom: 5px;">Settings & Preferences ⚙️</h2>
+                <p style="color: #94A3B8; font-size: 15px;">Manage your account, UI preferences, and system settings</p>
+            </div>
+            <div style="display: flex; align-items: center; gap: 20px;">
+
+                <div class="user-profile">
+                    <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Profile Picture" style="width: 40px; height: 40px;">
+                </div>
+            </div>
+        </header>
+
+        <div class="settings-grid">
+            
+            <!-- 1. Profile Settings -->
+            <div class="settings-card">
+                <h3>👤 Profile Settings</h3>
+                <div class="form-group" style="margin-bottom: 15px;">
+                    <label class="form-label">Full Name</label>
+                    <input type="text" id="settings-name" class="form-input" value="" placeholder="Your full name">
+                </div>
+                <div class="form-group" style="margin-bottom: 15px;">
+                    <label class="form-label">Email</label>
+                    <input type="email" id="settings-email" class="form-input" value="" placeholder="Your email" readonly>
+                </div>
+                <div class="form-group" style="margin-bottom: 15px;">
+                    <label class="form-label">Phone Number</label>
+                    <input type="text" id="settings-phone" class="form-input" value="" placeholder="Enter phone number">
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                    <div class="form-group">
+                        <label class="form-label">College/Branch</label>
+                        <input type="text" id="settings-branch" class="form-input" value="" placeholder="e.g. Computer Science">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Graduation Year</label>
+                        <input type="number" id="settings-grad-year" class="form-input" value="" placeholder="e.g. 2025">
+                    </div>
+                </div>
+                <div class="setting-item" style="margin-top: 15px; border: none;">
+                    <div class="setting-info">
+                        <h5>Profile Picture</h5>
+                        <p>Update your avatar</p>
+                    </div>
+                    <input type="file" id="profile-pic-input" accept="image/*" style="display: none;">
+                    <button class="btn-outline" id="upload-pic-btn">Upload Image</button>
+                </div>
+                <div style="margin-top: 15px; text-align: right;">
+                    <button class="primary-btn" style="width: auto; padding: 10px 20px;">Save Profile</button>
+                </div>
+            </div>
+
+            <!-- 2. Account Settings -->
+            <div class="settings-card">
+                <h3>🔒 Account Settings</h3>
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <h5>Change Password</h5>
+                        <p>Update your account password</p>
+                    </div>
+                    <button class="btn-outline" id="open-password-modal">Update</button>
+                </div>
+
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <h5>Active Sessions</h5>
+                        <p>Manage devices</p>
+                    </div>
+                    <button class="btn-outline" onclick="window.location.href='index.html'">Logout All</button>
+                </div>
+                <div class="setting-item" style="margin-top: 15px;">
+                    <div class="setting-info">
+                        <h5 style="color: #EF4444;">Delete Account</h5>
+                        <p>Permanently remove your data</p>
+                    </div>
+                    <button class="btn-outline btn-danger">Delete</button>
+                </div>
+            </div>
+
+            <!-- 3. Assessment Preferences -->
+            <div class="settings-card">
+                <h3>📊 Assessment Preferences</h3>
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <h5>Update Skills</h5>
+                        <p>Modify your skill levels for accurate predictions</p>
+                    </div>
+                    <button class="btn-outline" onclick="window.location.href='dashboard.html'">Update</button>
+                </div>
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <h5>Edit CGPA</h5>
+                        <p>Update your latest academic records</p>
+                    </div>
+                    <button class="btn-outline" onclick="window.location.href='dashboard.html'">Edit</button>
+                </div>
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <h5>Retake Assessment</h5>
+                        <p>Start a new placement prediction</p>
+                    </div>
+                    <button class="primary-btn" style="width: auto; padding: 8px 15px;" onclick="window.location.href='dashboard.html'">Start New</button>
+                </div>
+            </div>
+
+            <!-- 4. Chatbot Settings -->
+            <div class="settings-card">
+                <h3>🤖 Chatbot Settings</h3>
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <h5>Enable AI Suggestions</h5>
+                        <p>Show AI-driven insights on analysis page</p>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <h5>Save Conversations</h5>
+                        <p>Keep history of AI chat</p>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <h5>Clear Chat History</h5>
+                        <p>Delete all past AI conversations</p>
+                    </div>
+                    <button class="btn-outline">Clear Data</button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Change Password Modal -->
+    <div id="password-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Change Password</h3>
+                <span class="close-modal" id="close-password-modal">&times;</span>
+            </div>
+            <form id="change-password-form">
+                <div class="form-group" style="margin-bottom: 20px;">
+                    <label class="form-label">Current Password</label>
+                    <input type="password" id="old-password" class="form-input" placeholder="Enter current password" required>
+                </div>
+                <div class="form-group" style="margin-bottom: 20px;">
+                    <label class="form-label">New Password</label>
+                    <input type="password" id="new-password" class="form-input" placeholder="Enter new password" required>
+                </div>
+                <div class="form-group" style="margin-bottom: 25px;">
+                    <label class="form-label">Confirm New Password</label>
+                    <input type="password" id="confirm-password" class="form-input" placeholder="Confirm new password" required>
+                </div>
+                <button type="submit" class="primary-btn">Update Password</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="settings.js"></script>
+    <script src="auth.js"></script>
+    <script>
+        function logoutUser() {
+            const keys = ['placemento_user_name','placemento_user_email','placemento_user_phone',
+                          'placemento_user_branch','placemento_user_grad_year','placemento_user_pic',
+                          'placement_prediction_results'];
+            keys.forEach(k => localStorage.removeItem(k));
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>

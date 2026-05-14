@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Placemento - Placement & Skill Gap Analysis</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo" onclick="navigate('home')">Placemento</div>
+        <div class="nav-links">
+            <a onclick="navigate('home')" id="nav-home">Home</a>
+            <a onclick="navigate('about')" id="nav-about">About</a>
+            <a onclick="navigate('support')" id="nav-support">Support</a>
+            <a onclick="navigate('login')" id="nav-login" style="margin-left: 50px; padding: 8px 16px; border: 2px solid #0284c7; border-radius: 20px;">Login</a>
+        </div>
+    </header>
+
+    <div id="particles-js"></div>
+
+    <div class="wrapper">
+        <div class="glass-panel" id="main-panel">
+            
+            <div id="section-login" class="content-section active">
+                <h2>Welcome Back</h2>
+                <form id="login-form">
+                    <div class="input-group">
+                        <input type="email" id="login-email" placeholder="Email Address" required>
+                    </div>
+                    <div class="input-group">
+                        <input type="password" id="login-password" placeholder="Password" required>
+                    </div>
+                    <button type="submit" class="primary-btn">Log In</button>
+                </form>
+                
+
+                <div class="bottom-links">
+                    <a onclick="navigate('support')">Forgot Password?</a>
+                    <a onclick="navigate('register')">Create Account</a>
+                </div>
+            </div>
+
+            <div id="section-register" class="content-section">
+                <h2>Create Account</h2>
+                <form id="register-form">
+                    <div class="input-group">
+                        <input type="text" id="reg-name" placeholder="Full Name" required>
+                    </div>
+                    <div class="input-group">
+                        <input type="email" id="reg-email" placeholder="Email Address" required>
+                    </div>
+                    <div class="input-group">
+                        <input type="password" id="reg-password" placeholder="Password" required>
+                    </div>
+                    <button type="submit" class="primary-btn">Sign Up</button>
+                </form>
+                
+
+                <div class="bottom-links" style="justify-content: center; margin-top: 20px;">
+                    <a onclick="navigate('login')">Already have an account? Log In</a>
+                </div>
+            </div>
+
+            <div id="section-home" class="content-section">
+                <h2>Elevate Your Career Trajectory</h2>
+                <p style="text-align: center;">Identify your skill gaps, bridge them with tailored recommendations, and land your dream job.</p>
+                
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h4>🔍 Skill Gap Analysis</h4>
+                        <p>Compare your current proficiency against industry standards and job requirements.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>🎯 Targeted Placements</h4>
+                        <p>Get matched with top companies looking exactly for the skills you possess.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>📈 Interactive Dashboard</h4>
+                        <p>Visualize your progress through intuitive radar charts and analytics.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>📚 Learning Paths</h4>
+                        <p>Receive personalized course recommendations to bridge identified gaps.</p>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 30px;">
+                    <button class="primary-btn" style="width: auto; padding: 12px 30px;" onclick="navigate('register')">Get Started</button>
+                </div>
+            </div>
+
+            <div id="section-about" class="content-section">
+                <h2>About Placemento</h2>
+                <p>Placemento is an advanced platform dedicated to bridging the divide between academic learning and industry requirements. Our mission is to empower students by providing them with a clear, analytical view of their current skill sets compared to market demands.</p>
+                <p>Through our comprehensive Skill Gap Analysis engine, students can visualize their proficiency, discover personalized learning paths, and ultimately connect with premier placement opportunities tailored to their unique profile.</p>
+            </div>
+
+            <div id="section-support" class="content-section">
+                <h2>Get Support</h2>
+                <p>Having trouble logging in or navigating the portal? Send us a message below and our technical team will assist you shortly.</p>
+                <form onsubmit="event.preventDefault(); alert('Message sent!');">
+                    <div class="input-group">
+                        <input type="text" placeholder="Your Name" required>
+                    </div>
+                    <div class="input-group">
+                        <textarea placeholder="Describe your issue..." required></textarea>
+                    </div>
+                    <button type="submit" class="primary-btn">Send Message</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

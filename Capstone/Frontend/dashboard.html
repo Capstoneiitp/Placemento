@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Placemento - Skill Assessment</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="dashboard-body">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-logo">Placemento</div>
+        <ul class="sidebar-menu">
+            <li class="active"><i>📝</i> Skill Assessment</li>
+            <li onclick="window.location.href='chatbot.html'"><i>🤖</i> AI Chat Bot</li>
+            <li onclick="window.location.href='settings.html'"><i>⚙️</i> Settings</li>
+            <li onclick="logoutUser()" style="margin-top: auto; color: #bae6fd;"><i>🚪</i> Logout</li>
+        </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Header -->
+        <header class="dash-header">
+            <h2>Welcome back! 👋</h2>
+            <div style="display: flex; align-items: center; gap: 30px;">
+                <div class="user-profile">
+                    <div class="user-info" style="text-align: right;">
+                        <h4 id="profile-name">User</h4>
+                        <p id="profile-subtitle">Computer Science, Year 3</p>
+                    </div>
+                    <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Profile Picture">
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Dashboard Content -->
+        <div class="dash-grid" style="grid-template-columns: 1fr; padding: 40px; max-width: 900px; margin: 0 auto;">
+            <div class="dash-card" style="padding: 40px;">
+                <h3 style="margin-bottom: 10px; font-size: 24px; color: #F8FAFC;">AI Placement Assessment</h3>
+                <p style="font-size: 15px; color: #94A3B8; margin-bottom: 30px;">Enter your metrics below to evaluate your placement readiness.</p>
+                
+                <form id="prediction-form">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        
+                        <div class="form-group">
+                            <label class="form-label">College Tier (1-3)</label>
+                            <select class="form-input" id="college_tier" required>
+                                <option value="" disabled selected>Select Tier</option>
+                                <option value="1">Tier 1</option>
+                                <option value="2">Tier 2</option>
+                                <option value="3">Tier 3</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">CGPA (5.0 - 10.0)</label>
+                            <input type="number" class="form-input" id="cgpa" min="5.0" max="10.0" step="0.1" required placeholder="e.g. 8.5">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Coding Languages Known (1-4)</label>
+                            <input type="number" class="form-input" id="coding_languages" min="1" max="4" required placeholder="e.g. 2">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">DSA Score (0-100)</label>
+                            <input type="number" class="form-input" id="dsa" min="0" max="100" required placeholder="e.g. 75">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Core Subject Knowledge (0-100)</label>
+                            <input type="number" class="form-input" id="core_subjects" min="0" max="100" required placeholder="e.g. 80">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Internships Completed (0-2)</label>
+                            <input type="number" class="form-input" id="internships" min="0" max="2" required placeholder="e.g. 1">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Projects Completed (0-5)</label>
+                            <input type="number" class="form-input" id="projects" min="0" max="5" required placeholder="e.g. 3">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Communication Level (0-100)</label>
+                            <input type="number" class="form-input" id="communication" min="0" max="100" required placeholder="e.g. 85">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">LeetCode Solved (0-500)</label>
+                            <input type="number" class="form-input" id="leetcode" min="0" max="500" required placeholder="e.g. 200">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">CodeForces Rating (0-2000)</label>
+                            <input type="number" class="form-input" id="codeforces" min="0" max="2000" required placeholder="e.g. 1200">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Certifications (0-5)</label>
+                            <input type="number" class="form-input" id="certifications" min="0" max="5" required placeholder="e.g. 2">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Hackathons Participated (0-5)</label>
+                            <input type="number" class="form-input" id="hackathons" min="0" max="5" required placeholder="e.g. 1">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">HSC Percentage (0-100%)</label>
+                            <input type="number" class="form-input" id="hsc" min="0" max="100" step="0.1" required placeholder="e.g. 85.5">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">SSC Percentage (0-100%)</label>
+                            <input type="number" class="form-input" id="ssc" min="0" max="100" step="0.1" required placeholder="e.g. 90.0">
+                        </div>
+
+                        <div class="form-group" style="grid-column: span 2;">
+                            <label class="form-label">Aptitude Test Score (0-100)</label>
+                            <input type="number" class="form-input" id="aptitude" min="0" max="100" required placeholder="e.g. 90">
+                        </div>
+
+                    </div>
+                    
+                    <div style="margin-top: 40px; text-align: center;">
+                        <button type="submit" class="primary-btn" style="width: auto; padding: 14px 40px; font-size: 16px;">Analyze & Predict Placement</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="dashboard.js"></script>
+    <script src="auth.js"></script>
+    <script>
+        function logoutUser() {
+            const keys = ['placemento_user_name','placemento_user_email','placemento_user_phone',
+                          'placemento_user_branch','placemento_user_grad_year','placemento_user_pic',
+                          'placement_prediction_results'];
+            keys.forEach(k => localStorage.removeItem(k));
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>
